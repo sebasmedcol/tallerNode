@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Días</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Calculadora de Días entre Fechas</h1>
+  <form id="date-form">
+    <label for="start-date">Fecha Inicial:</label>
+    <input type="date" id="start-date" name="start-date" required><br><br>
+    
+    <label for="end-date">Fecha Final:</label>
+    <input type="date" id="end-date" name="end-date" required><br><br>
+    
+    <button type="submit">Calcular</button>
+  </form>
+  
+  <h2 id="result"></h2>
+  
+  <script>
+    document.getElementById('date-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const startDate = new Date(document.getElementById('start-date').value);
+      const endDate = new Date(document.getElementById('end-date').value);
+      
+      if (startDate && endDate) {
+        const timeDiff = endDate - startDate;
+        const daysDiff = timeDiff / (1000 * 3600 * 24);
+        
+        document.getElementById('result').textContent = `Número de días: ${daysDiff}`;
+      } else {
+        document.getElementById('result').textContent = 'Por favor, ingrese ambas fechas.';
+      }
+    });
+  </script>
+</body>
+</html>
